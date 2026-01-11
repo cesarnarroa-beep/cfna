@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Perfumes - JOHN IMPORT</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleperfumes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="catalog-body">
@@ -19,43 +19,65 @@
             <input type="text" id="catalog-search" placeholder="¿Qué buscas?" onkeyup="filterProducts()">
             <i class="fas fa-search search-icon" onclick="toggleSearch()"></i>
         </div>
-        <img src="Imagenes/logo.png" alt="JOHN IMPORT" class="small-logo">
+        <div class="header-logo-container">
+            <img src="Imagenes/logo.png" alt="JOHN IMPORT" class="small-logo">
+        </div>
     </div>
 </header>
 
 <div class="container">
     <aside class="filters-sidebar">
-        <h3>Filtros</h3>
+        <h3 onclick="toggleMainFilters()" class="main-filter-title">
+            Filtros <i class="fas fa-sliders-h" style="font-size: 14px; margin-left: 10px;"></i>
+        </h3>
         
-        <div class="filter-group">
-            <h4>Género</h4>
-            <label><input type="checkbox"> Damas</label>
-            <label><input type="checkbox"> Caballeros</label>
-            <label><input type="checkbox"> Unisex</label>
-        </div>
+        <div id="all-filters-content" class="all-filters-wrapper">
+            <div class="filter-group active"> 
+                <h4 onclick="toggleFilterGroup(this)">
+                    Género <i class="fas fa-chevron-down arrow-filter"></i>
+                </h4>
+                <div class="filter-content">
+                    <label><input type="checkbox"> Damas</label>
+                    <label><input type="checkbox"> Caballeros</label>
+                    <label><input type="checkbox"> Unisex</label>
+                </div>
+            </div>
 
-        <div class="filter-group">
-            <h4>Categoría</h4>
-            <label><input type="checkbox"> Eau de Parfum</label>
-            <label><input type="checkbox"> Decants</label>
-            <label><input type="checkbox"> Sets / Estuches</label>
-        </div>
+            <div class="filter-group active">
+                <h4 onclick="toggleFilterGroup(this)">
+                    Categoría <i class="fas fa-chevron-down arrow-filter"></i>
+                </h4>
+                <div class="filter-content">
+                    <label><input type="checkbox"> Eau de Parfum</label>
+                    <label><input type="checkbox"> Decants</label>
+                    <label><input type="checkbox"> Sets / Estuches</label>
+                </div>
+            </div>
 
-        <div class="filter-group">
-            <h4>Marca</h4>
-            <label><input type="checkbox"> Lattafa</label>
-            <label><input type="checkbox"> Armaf</label>
-            <label><input type="checkbox"> Afnan</label>
-            <label><input type="checkbox"> Rasasi</label>
-            <label><input type="checkbox"> Maison Alhambra</label>
-        </div>
+            <div class="filter-group active">
+                <h4 onclick="toggleFilterGroup(this)">
+                    Marca <i class="fas fa-chevron-down arrow-filter"></i>
+                </h4>
+                <div class="filter-content">
+                    <label><input type="checkbox"> Lattafa</label>
+                    <label><input type="checkbox"> Armaf</label>
+                    <label><input type="checkbox"> Afnan</label>
+                    <label><input type="checkbox"> Rasasi</label>
+                    <label><input type="checkbox"> Maison Alhambra</label>
+                </div>
+            </div>
 
-        <div class="filter-group">
-            <h4>Precio</h4>
-            <input type="range" class="price-range" min="0" max="1000" step="10">
-            <div style="display: flex; justify-content: space-between; font-size: 12px; margin-top: 8px; color: #666;">
-                <span>S/ 0.00</span>
-                <span>S/ 1000.00</span>
+            <div class="filter-group active">
+                <h4 onclick="toggleFilterGroup(this)">
+                    Precio <i class="fas fa-chevron-down arrow-filter"></i>
+                </h4>
+                <div class="filter-content">
+                    <input type="range" class="price-range" min="0" max="1000" step="10">
+                    <div style="display: flex; justify-content: space-between; font-size: 12px; margin-top: 8px; color: #666;">
+                        <span>S/ 0.00</span>
+                        <span>S/ 1000.00</span>
+                    </div>
+                </div>
             </div>
         </div>
     </aside>
@@ -71,60 +93,51 @@
             </select>
         </div>
 
-  <div class="products-container">
-            
-    <a href="html/perfumeria/categoria/lattafa/lattafa.html" style="text-decoration: none; color: inherit;">
-        <div class="product-card">
-            <div class="product-image-wrapper">
-                <span class="product-badge">30%</span>
-                <img src="Imagenes/perfumes/lattafa/lattafa_yara_rosa.png" alt="Lattafa Yara Rosa">
-            </div>
-            <div class="product-info">
-                <span class="product-brand">Lattafa</span>
-                <h4 class="product-name">Yara (Rosa) 100ml - Eau de Parfum</h4>
-                <div class="price-box">
-                    <span class="current">S/209.30</span>
-                    <span class="old">S/299.00</span>
+        <div class="products-container">
+            <a href="html/perfumeria/categoria/lattafa/lattafa.html" class="product-card">
+                <div class="product-image-wrapper">
+                    <span class="product-badge">30%</span>
+                    <img src="Imagenes/perfumes/lattafa/lattafa_yara_rosa.png" alt="Lattafa Yara Rosa">
                 </div>
-            </div>
-        </div>
-    </a>
-
-    <a href="asad.html" style="text-decoration: none; color: inherit;">
-        <div class="product-card">
-            <div class="product-image-wrapper">
-                <img src="Imagenes/perfumes/lattafa/lattafa_asad.png" alt="Lattafa Asad">
-            </div>
-            <div class="product-info">
-                <span class="product-brand">Lattafa</span>
-                <h4 class="product-name">Asad 100ml - Eau de Parfum</h4>
-                <div class="price-box">
-                    <span class="current">S/169.00</span>
+                <div class="product-info">
+                    <span class="product-brand">Lattafa</span>
+                    <h4 class="product-name">Yara (Rosa) 100ml - Eau de Parfum</h4>
+                    <div class="price-box">
+                        <span class="current">S/209.30</span>
+                        <span class="old">S/299.00</span>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </a>
+            </a>
 
-    <a href="clubdenuit.html" style="text-decoration: none; color: inherit;">
-        <div class="product-card">
-            <div class="product-image-wrapper">
-                <img src="Imagenes/perfumes/armaf/armaf_clubdenuit.png" alt="Armaf Club de Nuit">
-            </div>
-            <div class="product-info">
-                <span class="product-brand">Armaf</span>
-                <h4 class="product-name">Club de Nuit Intense Man 105ml</h4>
-                <div class="price-box">
-                    <span class="current">S/185.00</span>
+            <a href="asad.html" class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="Imagenes/perfumes/lattafa/lattafa_asad.png" alt="Lattafa Asad">
                 </div>
-            </div>
-        </div>
-    </a>
+                <div class="product-info">
+                    <span class="product-brand">Lattafa</span>
+                    <h4 class="product-name">Asad 100ml - Eau de Parfum</h4>
+                    <div class="price-box">
+                        <span class="current">S/169.00</span>
+                    </div>
+                </div>
+            </a>
 
-</div>
+            <a href="clubdenuit.html" class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="Imagenes/perfumes/armaf/armaf_clubdenuit.png" alt="Armaf Club de Nuit">
+                </div>
+                <div class="product-info">
+                    <span class="product-brand">Armaf</span>
+                    <h4 class="product-name">Club de Nuit Intense Man 105ml</h4>
+                    <div class="price-box">
+                        <span class="current">S/185.00</span>
+                    </div>
+                </div>
+            </a>
+        </div>
     </main>
 </div>
 
 <script src="script.js"></script>
 </body>
-
 </html>
