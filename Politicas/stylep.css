@@ -1,0 +1,303 @@
+/* =========================================
+    1. ESTILOS GENERALES Y BASE
+   ========================================= */
+body {
+    font-family: 'Helvetica', Arial, sans-serif;
+    margin: 0;
+    /* Degradado de vino a negro para los costados */
+    background: linear-gradient(180deg, #4c1212 0%, #000000 100%);
+    background-attachment: fixed;
+    color: white;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+header.catalog-header {
+    background-color: #000;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 65px;
+    border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.back-btn {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.small-logo { 
+    height: 30px !important; 
+    width: auto; 
+    object-fit: contain;
+}
+
+/* =========================================
+    2. DETALLES DEL PRODUCTO
+   ========================================= */
+.product-detail-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 40px;
+    background-color: #fff;
+    color: #333;
+    border-radius: 8px;
+}
+
+.product-main {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.product-gallery { flex: 1.2; display: flex; gap: 15px; min-width: 300px; }
+
+.thumb-list { display: flex; flex-direction: column; gap: 10px; }
+.thumb-list img {
+    width: 65px; height: 65px;
+    border: 1px solid #eee;
+    cursor: pointer;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.main-view {
+    flex: 1;
+    border: 1px solid #f5f5f5;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.main-view img { max-width: 100%; height: auto; max-height: 450px; }
+
+.product-info-panel { flex: 1; min-width: 300px; }
+.product-info-panel h1 { font-size: 26px; margin-bottom: 10px; color: #111; }
+.description-text { font-size: 15px; color: #666; margin-bottom: 25px; }
+
+.specs-grid { display: grid; gap: 12px; margin-bottom: 30px; }
+.spec-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    font-size: 14px; 
+    border-bottom: 1px solid #f5f5f5; 
+    padding-bottom: 8px; 
+}
+.spec-item i { color: #e91e63; width: 20px; }
+
+.price-tag { 
+    font-size: 28px; 
+    font-weight: bold; 
+    color: #000; 
+    margin: 20px 0; 
+    display: block; 
+}
+
+.btn-buy {
+    background-color: #e91e63;
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+/* =========================================
+    3. PIRÁMIDE OLFATIVA Y OFERTAS
+   ========================================= */
+.perfume-details-extra {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    padding-top: 40px;
+    border-top: 1px solid #eee;
+    gap: 40px;
+}
+
+.notes-pyramid { flex: 2; text-align: center; }
+.note-section { margin-bottom: 25px; }
+.note-section h3 { font-size: 12px; color: #888; text-transform: uppercase; margin-bottom: 15px; }
+
+.note-icons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+.item-note { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85px;
+}
+
+/* Iconos circulares con borde degradado */
+.item-note img { 
+    width: 55px; 
+    height: 55px; 
+    object-fit: cover; 
+    border-radius: 50%;
+    padding: 3px; 
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+    margin-bottom: 8px;
+}
+
+.item-note span { font-size: 11px; color: #444; font-weight: 600; }
+
+.usage-info { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+.usage-item { display: flex; align-items: center; gap: 15px; color: #e91e63; font-weight: bold; }
+
+.offers-table {
+    width: 100%;
+    margin-top: 40px;
+    border-collapse: collapse;
+}
+.offers-table th, .offers-table td { border: 1px solid #eee; padding: 15px; text-align: left; color: #333; }
+.offers-table th { background: #fafafa; }
+
+/* =========================================
+    4. SECCIÓN CONTACTO (FONDO IMAGEN)
+   ========================================= */
+.hero-contacto {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('../../../../Imagenes/decoracion/fondo_perfumes.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.formulario-card {
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    color: #333;
+}
+
+.formulario-card h2 { text-align: center; margin-bottom: 25px; font-weight: 800; }
+
+.input-row { display: flex; gap: 12px; margin-bottom: 12px; }
+
+.formulario-card input, .formulario-card textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: #f8f8f8;
+    box-sizing: border-box;
+}
+
+.btn-enviar {
+    width: 100%;
+    padding: 14px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* =========================================
+    5. FOOTER Y WHATSAPP
+   ========================================= */
+.main-footer {
+    background: #000;
+    color: #777;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 13px;
+    border-top: 1px solid #222;
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25d366;
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    z-index: 2000;
+}
+
+/* Responsividad */
+@media (max-width: 850px) {
+    .product-main, .perfume-details-extra { flex-direction: column; }
+    .product-detail-container { padding: 20px; margin: 10px; }
+}
+
+ /* Estilos específicos para páginas de texto legal */
+        .legal-content {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 50px;
+            border-radius: 8px;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .legal-content h1 { color: #000; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .legal-content h2 { color: #333; margin-top: 30px; font-size: 1.4rem; }
+        .legal-content p, .legal-content li { font-size: 15px; line-height: 1.8; color: #555; }
+        .legal-content ul { padding-left: 20px; }
+        .last-update { font-style: italic; color: #888; margin-bottom: 30px; }
+
+         /* Estilos para asegurar la lectura clara del texto legal */
+        .legal-content {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 50px;
+            border-radius: 8px;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .legal-content h1 { color: #000; border-bottom: 2px solid #eee; padding-bottom: 10px; font-size: 2rem; }
+        .legal-content h2 { color: #333; margin-top: 30px; font-size: 1.3rem; font-weight: bold; }
+        .legal-content p, .legal-content li { font-size: 15px; line-height: 1.8; color: #444; margin-bottom: 15px; }
+        .legal-content ul { padding-left: 20px; margin-bottom: 20px; }
+        .last-update { font-weight: bold; color: #000; margin-bottom: 25px; display: block; }
+        .contact-mail { color: #e91e63; text-decoration: none; font-weight: bold; }
+
+        .step-item { 
+    display: flex; 
+    align-items: flex-start; 
+    gap: 15px; 
+    margin-bottom: 20px; 
+}
+.step-number { 
+    background: #000; 
+    color: #fff; 
+    width: 25px; 
+    height: 25px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 12px; 
+    flex-shrink: 0; 
+    font-weight: bold;
+}
