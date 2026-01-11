@@ -6,6 +6,7 @@ body {
     margin: 0;
     background-color: #000;
     color: white;
+    overflow-x: hidden; 
 }
 
 header {
@@ -72,13 +73,19 @@ header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.has-submenu.open > .submenu-content { max-height: 1200px; }
-.has-submenu.open > .submenu-header .arrow-icon { transform: rotate(90deg); }
+/* Sincronizado con script.js (active) */
+.has-submenu.active > .submenu-content { max-height: 1200px; padding-bottom: 10px; }
+.has-submenu.active > .submenu-header .arrow-icon { transform: rotate(90deg); }
 
-#overlay.active { 
-    display: block; position: fixed; top: 0; left: 0; 
-    width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; 
+#overlay { 
+    display: none; 
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.7); 
+    z-index: 999; 
 }
+#overlay.active { display: block; }
 
 /* =========================================
     2. SLIDER DE VIDEOS
@@ -91,13 +98,15 @@ header {
     background-color: #000;
 }
 
+.slider-container { width: 100%; height: 100%; }
+
 .video-slide {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.8s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
 
 .video-slide.active { opacity: 1; visibility: visible; }
@@ -107,156 +116,124 @@ header {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.45);
+    background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
     display: flex; flex-direction: column;
     justify-content: center; align-items: center; text-align: center;
+    padding: 20px;
 }
 
-.video-overlay h1 { font-size: 3.5rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px; }
+.video-overlay h1 { font-size: clamp(2rem, 8vw, 4rem); letter-spacing: 4px; font-weight: bold; margin-bottom: 15px; }
+.video-overlay p { font-size: clamp(1rem, 4vw, 1.2rem); margin-bottom: 25px; max-width: 600px; }
+
+.slider-arrow {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    color: white; border: none;
+    width: 50px; height: 50px;
+    border-radius: 50%; cursor: pointer;
+    transition: 0.3s; display: flex;
+    align-items: center; justify-content: center;
+}
+.slider-arrow:hover { background: rgba(255, 255, 255, 0.3); }
+.slider-arrow.prev { left: 20px; }
+.slider-arrow.next { right: 20px; }
+
 .btn-whatsapp-slider {
-    background-color: #008f72;
+    background-color: #25d366;
     color: white;
-    padding: 14px 32px;
+    padding: 14px 28px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
     display: inline-flex; align-items: center; gap: 10px;
-    border: 1.5px solid white;
+    transition: 0.3s;
 }
 
 /* =========================================
-    3. ESTILOS CATÁLOGO (PERFUMES.HTML) - CORREGIDO
+    3. SECCIÓN BOLETÍN (NEWSLETTER)
    ========================================= */
-.catalog-body { background-color: #fff; color: #333; }
-
-.catalog-header { 
-    background: #000; 
-    padding: 0 30px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    height: 60px; /* Header delgado y profesional */
-    position: sticky; 
-    top: 0; 
-    z-index: 1000;
+.newsletter-section {
+    background-color: #ffffff;
+    padding: 80px 20px;
+    color: #333;
 }
 
-/* Corregido: Nombre de clase igual al de tu HTML */
-.small-logo { 
-    height: 25px; /* Tamaño pequeño como en el menú principal */
-    width: auto; 
-    object-fit: contain; 
-}
-
-.header-right { 
-    display: flex; 
-    align-items: center; 
-    gap: 15px; 
-}
-
-.back-btn { color: white; text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 5px; }
-
-.container { 
-    display: flex; 
-    max-width: 1400px; 
-    margin: 20px auto; 
-    padding: 0 20px; 
-    gap: 30px; 
-}
-
-.filters-sidebar { 
-    width: 240px; 
-    flex-shrink: 0; 
-    padding-top: 10px;
-}
-
-.filters-sidebar h3 { 
-    font-size: 1.4rem; 
-    margin-bottom: 20px; 
-    font-weight: bold; 
-}
-
-.filter-group { margin-bottom: 25px; }
-
-.filter-group h4 { 
-    border-bottom: 1px solid #eee; 
-    padding-bottom: 8px; 
-    text-transform: uppercase; 
-    font-size: 11px; 
-    color: #999; 
-    margin-bottom: 12px; 
-}
-
-/* Alineación de opciones de filtro */
-.filter-group label {
-    display: flex; /* Cambiado a flex para mejor control vertical */
-    align-items: center;
-    margin-bottom: 8px;
-    font-size: 13px;
-    cursor: pointer;
-    color: #555;
-}
-
-.filter-group input[type="checkbox"] {
-    margin-right: 8px;
-}
-
-.products-grid { flex: 1; }
-
-.grid-header {
+.newsletter-container {
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    font-size: 14px;
+    gap: 40px;
 }
 
-.products-container { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
-    gap: 30px 20px; 
+.newsletter-text { flex: 1; }
+.newsletter-text h2 { font-size: 14px; text-transform: uppercase; color: #999; letter-spacing: 1px; margin-bottom: 10px; }
+.newsletter-text h3 { font-size: 2.2rem; color: #000; margin-bottom: 15px; font-weight: bold; }
+
+.newsletter-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px; /* Controla el ancho de ambos elementos */
 }
 
-.product-image-wrapper { 
-    background-color: #f9f9f9; 
-    padding: 20px; 
-    position: relative; 
-    display: flex; 
-    justify-content: center; 
+.newsletter-form input[type="email"] {
+    width: 150%; /* Ocupa el 100% de los 400px */
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.newsletter-form button {
+    width: 150%; /* Exactamente el mismo ancho que el input */
+    padding: 16px;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
     align-items: center;
-    height: 260px;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.3s ease;
+    box-sizing: border-box;
 }
 
-.product-card img { max-width: 90%; height: 90%; object-fit: contain; transition: 0.4s; }
-.product-card:hover img { transform: scale(1.05); }
-
-.product-badge {
-    position: absolute; top: 12px; left: 12px;
-    background: #000; color: #fff; padding: 3px 8px; font-size: 10px; font-weight: bold;
-}
-
-.product-info { padding: 12px 0; }
-.product-brand { color: #999; font-size: 12px; text-transform: uppercase; }
-.product-name { margin: 4px 0; font-size: 14px; font-weight: 500; color: #222; }
-
-.price-box { margin-top: 8px; display: flex; align-items: center; }
-.price-box .current { font-weight: 700; font-size: 16px; color: #000; }
-.price-box .old { text-decoration: line-through; color: #bbb; font-size: 13px; margin-left: 8px; }
-
-/* Buscador en Header */
-.search-container { display: flex; align-items: center; }
-#catalog-search {
-    width: 0; opacity: 0; border: none; border-bottom: 1px solid #444;
-    background: transparent; color: white; transition: 0.4s; outline: none; font-size: 13px;
-}
-#catalog-search.active { width: 160px; opacity: 1; padding: 2px 0; margin-right: 10px; }
-.search-icon { color: white; cursor: pointer; font-size: 1rem; }
+.newsletter-form button:hover { background-color: #000; color: #fff; }
 
 /* =========================================
-    4. RESPONSIVIDAD
+    4. FOOTER Y OTROS
    ========================================= */
-@media (max-width: 992px) {
-    .container { flex-direction: column; }
-    .filters-sidebar { width: 100%; border-bottom: 1px solid #eee; padding-bottom: 20px; }
-    .products-container { grid-template-columns: repeat(2, 1fr); }
+.main-footer {
+    background: #000;
+    color: #777;
+    text-align: center;
+    padding: 60px 20px;
+    border-top: 1px solid #222;
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px; right: 25px;
+    background: #25d366; color: white;
+    width: 60px; height: 60px;
+    border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 32px; z-index: 2000;
+}
+
+@media (max-width: 850px) {
+    .newsletter-container { flex-direction: column; text-align: center; }
+    .newsletter-inputs { max-width: 100%; }
+    .video-slider { height: 70vh; }
 }
