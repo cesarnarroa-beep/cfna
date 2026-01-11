@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOHN IMPORT - Importaciones & Venta de Perfumes, Relojes y Teléfonos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="menu-btn" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <div class="logo-container">
+            <img src="Imagenes/logo.png" alt="JOHN IMPORT" class="main-logo">
+        </div>
+    </header>
+
+    <nav id="sidebar" class="sidebar">
+        <div class="close-btn" onclick="toggleMenu()">&times;</div>
+        <div class="menu-header">
+            <img src="Imagenes/logo.png" alt="Logo Menú" class="sidebar-logo">
+        </div>
+        <ul class="menu-links">
+            <li class="has-submenu">
+                <div class="submenu-header" onclick="toggleSubmenu(event, this)">
+                    <span>Perfumes</span>
+                    <i class="fas fa-chevron-right arrow-icon"></i>
+                </div>
+                <ul class="submenu-content">
+                    <li><a href="perfumes.html" class="menu-item-link">Ver Todo Perfumes</a></li>
+                    <li><a href="perfumes.html" class="menu-item-link">Perfumes para Mujer</a></li>
+                    <li><a href="perfumes.html" class="menu-item-link">Perfumes para Hombre</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="single-link">Relojes</a></li>
+            <li><a href="#" class="single-link">Teléfonos</a></li>
+            <hr style="opacity: 0.1; margin: 10px 0;">
+            <li><a href="#" class="single-link">Ofertas Especiales</a></li>
+            <li><a href="#" class="single-link">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div id="overlay" onclick="toggleMenu()"></div>
+
+    <main>
+        <section class="video-slider">
+            <div class="slider-container">
+                
+                <div class="video-slide active">
+                    <video autoplay muted loop playsinline id="v1">
+                        <source src="Videos/Perfumes/Video1.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <h1>JOHN IMPORT</h1>
+                        <p>Importacion & Venta de perfumes, relojes y teléfonos en Perú</p>
+                        <a href="https://wa.me/921700070" class="btn-whatsapp-slider">
+                            <i class="fab fa-whatsapp"></i> WhatsApp: 921700070
+                        </a>
+                    </div>
+                </div>
+
+                <div class="video-slide">
+                    <video muted loop playsinline id="v2">
+                        <source src="Videos/Perfumes/Video2.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <h1>FRAGANCIAS EXCLUSIVAS</h1>
+                        <p>Aromas que definen tu estilo personal</p>
+                        <a href="https://wa.me/921700070" class="btn-whatsapp-slider">
+                            <i class="fab fa-whatsapp"></i> WhatsApp: 921700070
+                        </a>
+                    </div>
+                </div>
+
+                <div class="video-slide">
+                    <video muted loop playsinline id="v3">
+                        <source src="Videos/Relojes/Video4.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <h1>RELOJES DE LUJO</h1>
+                        <p>Elegancia y precisión en cada segundo</p>
+                        <a href="https://wa.me/921700070" class="btn-whatsapp-slider">
+                            <i class="fab fa-whatsapp"></i> WhatsApp: 921700070
+                        </a>
+                    </div>
+                </div>
+
+                <div class="video-slide">
+                    <video muted loop playsinline id="v4">
+                        <source src="Videos/Relojes/Video2.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <h1>COLECCIÓN PREMIER</h1>
+                        <p>Las mejores marcas de relojería internacional</p>
+                        <a href="https://wa.me/921700070" class="btn-whatsapp-slider">
+                            <i class="fab fa-whatsapp"></i> WhatsApp: 921700070
+                        </a>
+                    </div>
+                </div>
+
+                <div class="video-slide">
+                    <video muted loop playsinline id="v5">
+                        <source src="Videos/Telefonos/Video1.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <h1>iPHONE & TECNOLOGÍA</h1>
+                        <p>Lo último en tecnología Apple a tu alcance</p>
+                        <a href="https://wa.me/921700070" class="btn-whatsapp-slider">
+                            <i class="fab fa-whatsapp"></i> WhatsApp: 921700070
+                        </a>
+                    </div>
+                </div>
+
+                <div class="video-slide">
+                    <video muted loop playsinline id="v6">
+                        <source src="Videos/Telefonos/Video2.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <h1>SMARTPHONES TOP</h1>
+                        <p>Equipos originales con garantía total</p>
+                        <a href="https://wa.me/921700070" class="btn-whatsapp-slider">
+                            <i class="fab fa-whatsapp"></i> WhatsApp: 921700070
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="slider-arrow prev" onclick="changeSlide(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-arrow next" onclick="changeSlide(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
