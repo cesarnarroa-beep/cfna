@@ -5,7 +5,7 @@ body {
     font-family: 'Helvetica', Arial, sans-serif;
     margin: 0;
     /* Degradado verde a negro original */
-    background: linear-gradient(180deg, #124c26 0%, #000000 100%);
+    background: linear-gradient(180deg, #4c4912 0%, #000000 100%);
     background-attachment: fixed;
     color: white;
     line-height: 1.6;
