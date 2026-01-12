@@ -4,11 +4,13 @@
 body {
     font-family: 'Helvetica', Arial, sans-serif;
     margin: 0;
-    background: linear-gradient(180deg, #4c1212 0%, #000000 100%);
-    background-attachment: fixed; /* Esto hace que el degradado no se corte al bajar */
+    /* Degradado verde a negro original */
+    background: linear-gradient(180deg, #124c26 0%, #000000 100%);
+    background-attachment: fixed;
     color: white;
     line-height: 1.6;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 header.catalog-header {
@@ -31,24 +33,28 @@ header.catalog-header {
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: 0.3s;
 }
 
+.back-btn:hover { color: #e91e63; }
+
 .small-logo { 
-    height: 30px !important; 
+    height: 35px !important; /* Ajustado para que se vea un poco más claro */
     width: auto; 
     object-fit: contain;
 }
 
 /* =========================================
-    2. DETALLES DEL PRODUCTO (LATTAFA.HTML)
+    2. DETALLES DEL PRODUCTO (GALERÍA)
    ========================================= */
 .product-detail-container {
     max-width: 1200px;
     margin: 30px auto;
     padding: 40px;
-    background-color: #fff;
+    background-color: #fff; /* Fondo blanco para resaltar el producto */
     color: #333;
     border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .product-main {
@@ -57,29 +63,62 @@ header.catalog-header {
     flex-wrap: wrap;
 }
 
-.product-gallery { flex: 1.2; display: flex; gap: 15px; min-width: 300px; }
-
-.thumb-list { display: flex; flex-direction: column; gap: 10px; }
-.thumb-list img {
-    width: 65px; height: 65px;
-    border: 1px solid #eee;
-    cursor: pointer;
-    object-fit: contain;
-    border-radius: 4px;
+.product-gallery { 
+    flex: 1.2; 
+    display: flex; 
+    gap: 15px; 
+    min-width: 300px; 
 }
 
+/* LISTA DE MINIATURAS (LOS CUADROS) */
+.thumb-list { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+.thumb-list img {
+    width: 75px; 
+    height: 75px;
+    border: 2px solid #eee;
+    cursor: pointer;
+    object-fit: cover;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.thumb-list img:hover {
+    border-color: #e91e63;
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* VISTA PRINCIPAL */
 .main-view {
     flex: 1;
     border: 1px solid #f5f5f5;
     border-radius: 8px;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 20px;
+    background: #fff;
+    min-height: 450px;
 }
-.main-view img { max-width: 100%; height: auto; max-height: 450px; }
 
+#main-product-img { 
+    max-width: 100%; 
+    height: auto; 
+    max-height: 450px; 
+    transition: opacity 0.3s ease-in-out; /* Para que el JS cambie suavemente */
+}
+
+/* =========================================
+    3. PANEL DE INFORMACIÓN Y BOTONES
+   ========================================= */
 .product-info-panel { flex: 1; min-width: 300px; }
-.product-info-panel h1 { font-size: 26px; margin-bottom: 10px; color: #111; }
+.product-info-panel h1 { font-size: 28px; margin-bottom: 10px; color: #111; font-weight: 800; }
 .description-text { font-size: 15px; color: #666; margin-bottom: 25px; }
 
 .specs-grid { display: grid; gap: 12px; margin-bottom: 30px; }
@@ -94,7 +133,7 @@ header.catalog-header {
 .spec-item i { color: #e91e63; width: 20px; }
 
 .price-tag { 
-    font-size: 28px; 
+    font-size: 32px; 
     font-weight: bold; 
     color: #000; 
     margin: 20px 0; 
@@ -104,18 +143,24 @@ header.catalog-header {
 .btn-buy {
     background-color: #e91e63;
     color: white;
-    padding: 15px 40px;
+    padding: 16px 45px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    transition: 0.3s;
+    gap: 12px;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-buy:hover {
+    background-color: #c2185b;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
 }
 
 /* =========================================
-    3. PIRÁMIDE OLFATIVA (CON BORDE DEGRADADO)
+    4. PIRÁMIDE OLFATIVA Y NOTAS
    ========================================= */
 .perfume-details-extra {
     display: flex;
@@ -127,8 +172,8 @@ header.catalog-header {
 }
 
 .notes-pyramid { flex: 2; text-align: center; }
-.note-section { margin-bottom: 25px; }
-.note-section h3 { font-size: 14px; color: #888; text-transform: uppercase; margin-bottom: 15px; }
+.note-section { margin-bottom: 30px; }
+.note-section h3 { font-size: 13px; color: #999; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
 
 .note-icons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
 
@@ -136,30 +181,24 @@ header.catalog-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90px;
+    width: 95px;
 }
 
-/* EFECTO BORDE DEGRADADO AQUÍ */
 .item-note img { 
-    width: 60px; 
-    height: 60px; 
+    width: 65px; 
+    height: 65px; 
     object-fit: cover; 
     border-radius: 50%;
-    padding: 3px; /* Espacio para que se vea el degradado */
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
-    margin-bottom: 8px;
-    display: block;
+    padding: 3px;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); 
+    margin-bottom: 10px;
+    transition: transform 0.3s;
 }
 
-.item-note span { 
-    font-size: 12px; 
-    color: #444; 
-    font-weight: 500; 
-}
+.item-note:hover img { transform: rotate(10deg) scale(1.1); }
+.item-note span { font-size: 12px; color: #444; font-weight: 600; }
 
-.usage-info { flex: 1; display: flex; flex-direction: column; gap: 30px; }
-.usage-item { display: flex; align-items: center; gap: 15px; color: #e91e63; font-weight: bold; }
-
+/* TABLA DE OFERTAS */
 .offers-table {
     width: 100%;
     margin-top: 40px;
@@ -169,17 +208,18 @@ header.catalog-header {
 .offers-table th { background: #fafafa; }
 
 /* =========================================
-    4. SECCIÓN CONTACTO (FONDO DE PERFUMES)
+    5. SECCIÓN CONTACTO
    ========================================= */
+.usage-info { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+.usage-item { display: flex; align-items: center; gap: 15px; color: #e91e63; font-weight: bold; font-size: 1.1rem; }
+
 .hero-contacto {
-    /* Combinamos un degradado oscuro con tu imagen para que el texto sea legible */
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                 url('../../../../Imagenes/decoracion/fondos.png'); 
-    
-    background-size: cover;       /* Cubre toda la sección */
-    background-position: center;  /* Centra la foto */
-    background-attachment: fixed; /* Efecto elegante al hacer scroll */
-    min-height: 600px;            /* Altura suficiente para lucir la foto */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -187,31 +227,23 @@ header.catalog-header {
 }
 
 .formulario-card {
-    background: rgba(255, 255, 255, 0.95); /* Blanco ligeramente transparente */
+    background: rgba(255, 255, 255, 0.95);
     padding: 40px;
     border-radius: 15px;
     width: 100%;
     max-width: 450px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.5);
     color: #333;
-    backdrop-filter: blur(5px); /* Efecto de desenfoque detrás del card */
 }
 
-.formulario-card h2 { 
-    margin-bottom: 30px; 
-    font-size: 28px; 
-    font-weight: 800; 
-    text-align: center;
-}
-
+.formulario-card h2 { margin-bottom: 25px; font-weight: 800; text-align: center; }
 
 .input-row { display: flex; gap: 12px; margin-bottom: 12px; }
-
 .formulario-card input, .formulario-card textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #e0e0e0;
-    border-radius: 4px;
+    border-radius: 6px;
     background: #f8f8f8;
     box-sizing: border-box;
 }
@@ -222,53 +254,44 @@ header.catalog-header {
     background: #000;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
     transition: 0.3s;
 }
-
 .btn-enviar:hover { background: #333; }
 
 /* =========================================
-    5. FOOTER Y WHATSAPP
+    6. FOOTER Y WHATSAPP
    ========================================= */
 .main-footer {
     background: #000;
     color: #777;
     text-align: center;
-    padding: 40px 20px;
-    font-size: 13px;
+    padding: 60px 20px;
     border-top: 1px solid #222;
-}
-
-.copyright {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #111;
 }
 
 .whatsapp-float {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: #25d366;
-    color: white;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    z-index: 2000;
+    bottom: 30px; right: 30px;
+    background: #25d366; color: white;
+    width: 60px; height: 60px;
+    border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 30px; z-index: 2000;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
+/* =========================================
+    7. RESPONSIVO
+   ========================================= */
 @media (max-width: 850px) {
     .product-main, .perfume-details-extra { flex-direction: column; }
     .product-detail-container { padding: 20px; margin: 10px; }
-    .input-row { flex-direction: column; }
+    .product-gallery { flex-direction: column-reverse; }
+    .thumb-list { flex-direction: row; justify-content: center; overflow-x: auto; }
+    .thumb-list img { width: 65px; height: 65px; }
+    .input-row { flex-direction: column; gap: 12px; }
 }
