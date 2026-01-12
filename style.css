@@ -11,37 +11,41 @@ body {
 
 header {
     background-color: #000;
-    padding: 10px 20px;
+    padding: 8px 20px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #222;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
-.main-logo { height: 35px; margin-left: 15px; }
+.main-logo { 
+    height: 55px; 
+    margin-left: 15px; 
+    transition: transform 0.3s ease;
+}
 
-/* Botón Hamburguesa */
 .menu-btn { cursor: pointer; }
 .line { width: 25px; height: 2px; background-color: white; margin: 6px 0; }
 
-/* Sidebar */
+/* Sidebar (Menú Lateral) */
 .sidebar {
     position: fixed;
     top: 0; left: 0; width: 320px; height: 100%;
-    background: linear-gradient(180deg, #440a0a 0%, #000 100%);
-    z-index: 1001;
+    background: linear-gradient(180deg, #0a4420 0%, #000 100%);
+    z-index: 2000;
     transform: translateX(-100%);
     transition: 0.4s ease;
     overflow-y: auto;
 }
 .sidebar.active { transform: translateX(0); }
-.sidebar-logo { width: 140px; display: block; margin: 20px auto; }
+.sidebar-logo { width: 170px; display: block; margin: 20px auto; }
 .close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; }
 
-/* Enlaces y Submenús */
+/* Enlaces del Menú */
 .menu-links { list-style: none; padding: 0; margin-top: 20px; }
+
 .submenu-header, .single-link {
     padding: 18px 25px;
     display: flex;
@@ -49,33 +53,47 @@ header {
     align-items: center;
     color: white;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 14px;
     text-transform: uppercase;
     cursor: pointer;
     border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .arrow-icon { font-size: 12px; transition: transform 0.3s; }
+
+/* CORRECCIÓN DE SUBMENÚ (CUADROS) */
 .submenu-content {
     list-style: none;
-    background-color: rgba(0,0,0,0.3);
+    padding: 0; /* Elimina espacios extra */
+    background-color: rgba(0,0,0,0.4); /* Fondo más oscuro para los sub-items */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease-out;
 }
 
+/* ESTILO PARA LOS ENLACES DENTRO DEL SUBMENÚ */
 .menu-item-link {
-    display: block;
-    padding: 15px 25px;
-    color: white !important;
-    text-decoration: none !important;
+    display: block; /* Para que ocupen todo el ancho (forma de cuadro) */
+    padding: 15px 40px; /* Espaciado interno */
+    color: #eee; /* Texto casi blanco */
+    text-decoration: none; /* Quita el subrayado */
     font-size: 14px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    transition: background 0.3s;
 }
 
-/* Sincronizado con script.js (active) */
-.has-submenu.active > .submenu-content { max-height: 1200px; padding-bottom: 10px; }
-.has-submenu.active > .submenu-header .arrow-icon { transform: rotate(90deg); }
+.menu-item-link:hover {
+    background-color: rgba(255,255,255,0.1); /* Efecto al pasar el mouse */
+    color: white;
+}
+
+.has-submenu.active > .submenu-content { 
+    max-height: 500px; 
+}
+
+.has-submenu.active > .submenu-header .arrow-icon { 
+    transform: rotate(90deg); 
+}
 
 #overlay { 
     display: none; 
@@ -83,7 +101,7 @@ header {
     top: 0; left: 0; 
     width: 100%; height: 100%; 
     background: rgba(0,0,0,0.7); 
-    z-index: 999; 
+    z-index: 1500; 
 }
 #overlay.active { display: block; }
 
@@ -98,8 +116,6 @@ header {
     background-color: #000;
 }
 
-.slider-container { width: 100%; height: 100%; }
-
 .video-slide {
     position: absolute;
     top: 0; left: 0;
@@ -108,7 +124,6 @@ header {
     visibility: hidden;
     transition: opacity 1s ease-in-out;
 }
-
 .video-slide.active { opacity: 1; visibility: visible; }
 .video-slide video { width: 100%; height: 100%; object-fit: cover; }
 
@@ -117,27 +132,48 @@ header {
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: center; text-align: center;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
     padding: 20px;
+    z-index: 5;
 }
 
-.video-overlay h1 { font-size: clamp(2rem, 8vw, 4rem); letter-spacing: 4px; font-weight: bold; margin-bottom: 15px; }
-.video-overlay p { font-size: clamp(1rem, 4vw, 1.2rem); margin-bottom: 25px; max-width: 600px; }
+.overlay-logo {
+    height: 130px; 
+    width: auto;
+    margin-bottom: 15px;
+    object-fit: contain;
+}
+
+.video-overlay h1 { 
+    font-size: clamp(2rem, 8vw, 4rem); 
+    letter-spacing: 4px; 
+    font-weight: bold; 
+    margin-bottom: 15px; 
+}
+
+.video-overlay p { 
+    font-size: clamp(1rem, 4vw, 1.2rem); 
+    margin-bottom: 25px; 
+    max-width: 600px; 
+}
 
 .slider-arrow {
     position: absolute;
     top: 50%; transform: translateY(-50%);
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.1);
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(5px);
     color: white; border: none;
-    width: 50px; height: 50px;
+    width: 55px; height: 55px;
     border-radius: 50%; cursor: pointer;
     transition: 0.3s; display: flex;
     align-items: center; justify-content: center;
 }
-.slider-arrow:hover { background: rgba(255, 255, 255, 0.3); }
+.slider-arrow:hover { background: rgba(255, 255, 255, 0.4); transform: translateY(-50%) scale(1.1); }
 .slider-arrow.prev { left: 20px; }
 .slider-arrow.next { right: 20px; }
 
@@ -179,24 +215,24 @@ header {
     flex-direction: column;
     gap: 15px;
     width: 100%;
-    max-width: 400px; /* Controla el ancho de ambos elementos */
+    max-width: 450px;
 }
 
-.newsletter-form input[type="email"] {
-    width: 150%; /* Ocupa el 100% de los 400px */
-    padding: 16px;
+.newsletter-form input[type="text"] {
+    width: 100%;
+    padding: 18px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 15px;
+    border-radius: 8px;
+    font-size: 16px;
     box-sizing: border-box;
 }
 
 .newsletter-form button {
-    width: 150%; /* Exactamente el mismo ancho que el input */
-    padding: 16px;
-    background-color: #fff;
-    color: #000;
-    border: 2px solid #000;
+    width: 100%;
+    padding: 18px;
+    background-color: #000;
+    color: #fff;
+    border: none;
     border-radius: 50px;
     font-weight: bold;
     font-size: 16px;
@@ -208,11 +244,10 @@ header {
     transition: 0.3s ease;
     box-sizing: border-box;
 }
-
-.newsletter-form button:hover { background-color: #000; color: #fff; }
+.newsletter-form button:hover { background-color: #440a0a; }
 
 /* =========================================
-    4. FOOTER Y OTROS
+    4. FOOTER Y RESPONSIVO
    ========================================= */
 .main-footer {
     background: #000;
@@ -226,14 +261,16 @@ header {
     position: fixed;
     bottom: 25px; right: 25px;
     background: #25d366; color: white;
-    width: 60px; height: 60px;
+    width: 65px; height: 65px;
     border-radius: 50%; display: flex;
     align-items: center; justify-content: center;
-    font-size: 32px; z-index: 2000;
+    font-size: 34px; z-index: 3000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 @media (max-width: 850px) {
     .newsletter-container { flex-direction: column; text-align: center; }
-    .newsletter-inputs { max-width: 100%; }
-    .video-slider { height: 70vh; }
+    .video-slider { height: 75vh; }
+    .main-logo { height: 45px; }
+    .overlay-logo { height: 80px; }
 }
